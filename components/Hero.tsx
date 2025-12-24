@@ -11,11 +11,16 @@ export default function Hero({ onSignClick }: HeroProps) {
   const { authenticate } = useConnect();
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [userAddress, setUserAddress] = useState<string>('');
 
   useEffect(() => {
     setIsMounted(true);
     if (userSession && userSession.isUserSignedIn()) {
       setIsSignedIn(true);
+      const userData = userSession.loadUserData();
+      // Try to get testnet address first for dev, fall back to mainnet
+      const address = userData.profile?.stxAddress?.testnet || userData.profile?.stxAddress?.mainnet || '';
+      setUserAddress(address);
     }
   }, []);
 
@@ -36,8 +41,17 @@ export default function Hero({ onSignClick }: HeroProps) {
   // Prevent hydration mismatch
   if (!isMounted) return null; 
 
+  const truncatedAddress = userAddress ? `${userAddress.slice(0, 6)}...${userAddress.slice(-4)}` : '';
+
   return (
     <section className={styles.heroSection}>
+      {isSignedIn && userAddress && (
+        <div className={styles.walletBadge}>
+          <span className={styles.statusDot}></span>
+          {truncatedAddress}
+        </div>
+      )}
+
       <div className={styles.titleWrapper}>
         <h1 className={styles.glitchTitle} data-text="SIGNWALL">
           SIGNWALL
