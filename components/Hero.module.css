@@ -110,3 +110,31 @@
   95% { clip: rect(19px, 9999px, 77px, 0); }
   100% { clip: rect(96px, 9999px, 49px, 0); }
 }
+
+.walletBadge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(10, 10, 18, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--neon-cyan);
+  padding: 8px 16px;
+  border-radius: 4px;
+  color: var(--neon-cyan);
+  font-family: var(--font-orbitron);
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+  z-index: 10;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  background-color: #00ff00;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #00ff00;
+}
