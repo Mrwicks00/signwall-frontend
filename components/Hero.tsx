@@ -32,10 +32,20 @@ export default function Hero({ onSignClick }: HeroProps) {
       },
       redirectTo: '/',
       onFinish: () => {
-        window.location.reload();
+        const userData = userSession.loadUserData();
+        setIsSignedIn(true);
+        const address = userData.profile?.stxAddress?.testnet || userData.profile?.stxAddress?.mainnet || '';
+        setUserAddress(address);
       },
       userSession,
     });
+  }
+
+  const handleDisconnect = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    userSession.signUserOut();
+    setIsSignedIn(false);
+    setUserAddress('');
   }
 
   // Prevent hydration mismatch
@@ -48,7 +58,10 @@ export default function Hero({ onSignClick }: HeroProps) {
       {isSignedIn && userAddress && (
         <div className={styles.walletBadge}>
           <span className={styles.statusDot}></span>
-          {truncatedAddress}
+          <span className={styles.addressText}>{truncatedAddress}</span>
+          <button className={styles.disconnectButton} onClick={handleDisconnect}>
+            Disconnect
+          </button>
         </div>
       )}
 

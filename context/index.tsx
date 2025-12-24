@@ -36,10 +36,6 @@ function ContextProvider({ children }: { children: ReactNode }) {
       name: "SignWall",
       icon: typeof window !== 'undefined' ? window.location.origin + '/next.svg' : '/next.svg',
     },
-    redirectTo: "/",
-    onFinish: () => {
-      window.location.reload();
-    },
     userSession,
   };
 
