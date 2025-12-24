@@ -1,0 +1,83 @@
+.wallSection {
+  padding: 4rem 1rem;
+  background-color: var(--color-bg);
+}
+
+.wallHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-family: var(--font-display);
+  color: var(--color-secondary);
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+  border-color: var(--color-secondary);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.name {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+  font-size: 1.1rem;
+}
+
+.timestamp {
+  font-size: 0.8rem;
+  color: var(--color-text-dim);
+}
+
+.message {
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+/* Holographic Overlay Effect */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.05) 0%, 
+    rgba(255, 255, 255, 0) 50%, 
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  pointer-events: none;
+  opacity: 0.5;
+}
